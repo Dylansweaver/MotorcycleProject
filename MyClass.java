@@ -20,11 +20,9 @@ public class MyClass {
             System.out.println("3. Exit");
 
 
-            if(input.hasNextInt())
-            {
+          
                 selection = input.nextInt();
-                // do something
-            }
+             
 
         return selection;
     }
@@ -39,11 +37,9 @@ public class MyClass {
         System.out.println("3. Display Stops");
         System.out.println("4. Exit");
 
-        if(input.hasNextInt())
-        {
+        
             selection = input.nextInt();
-            // do something
-        }
+          
 
         return selection;
     }
