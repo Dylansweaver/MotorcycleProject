@@ -9,30 +9,42 @@ import java.lang.*;
 public class MyClass {
     public static int menu() {
 
-        int selection;
-        Scanner input = new Scanner(System.in);
+        int selection=0;
+
+            Scanner input = new Scanner(System.in);
+
+            System.out.println(" ");
+            System.out.println("Motorcycle Trip Planner");
+            System.out.println("1. Destination");
+            System.out.println("2. New Destination");
+            System.out.println("3. Exit");
 
 
-        System.out.println("Motorcycle Trip Planner");
-        System.out.println("1. Destination");
-        System.out.println("2. New Destination");
-        System.out.println("3. Exit");
+            if(input.hasNextInt())
+            {
+                selection = input.nextInt();
+                // do something
+            }
 
-        selection = input.nextInt();
         return selection;
     }
     public static int secondMenu() {
 
-        int selection;
+        int selection=0;
         Scanner input = new Scanner(System.in);
 
-
+        System.out.println(" ");
         System.out.println("1. Main Menu");
         System.out.println("2. New Stop");
         System.out.println("3. Display Stops");
         System.out.println("4. Exit");
 
-        selection = input.nextInt();
+        if(input.hasNextInt())
+        {
+            selection = input.nextInt();
+            // do something
+        }
+
         return selection;
     }
 
