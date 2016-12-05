@@ -9,9 +9,9 @@ import java.lang.*;
 public class MyClass {
     public static int menu() {
 
-        int selection=0;
+        int selection = 0;
 
-            Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
             System.out.println(" ");
             System.out.println("Motorcycle Trip Planner");
@@ -19,16 +19,28 @@ public class MyClass {
             System.out.println("2. New Destination");
             System.out.println("3. Exit");
 
+        try
+        {
+            selection = input.nextInt();
+        }
+        catch(InputMismatchException exception)
+        {
 
-          
-                selection = input.nextInt();
-             
+            //when user put other than integer
 
-        return selection;
+        }
+
+
+
+
+
+            return selection;
+
     }
+
     public static int secondMenu() {
 
-        int selection=0;
+        int selection = 0;
         Scanner input = new Scanner(System.in);
 
         System.out.println(" ");
@@ -37,9 +49,15 @@ public class MyClass {
         System.out.println("3. Display Stops");
         System.out.println("4. Exit");
 
-        
+        try
+        {
             selection = input.nextInt();
-          
+        }
+        catch(InputMismatchException exception)
+        {
+            //when user put other than integer
+
+        }
 
         return selection;
     }
@@ -49,37 +67,41 @@ public class MyClass {
         List<String> listDestinations = new ArrayList<String>();
         List<ArrayList<String>> listStops = new ArrayList<ArrayList<String>>();
         List<String> arrayStops = new ArrayList<String>();
-        boolean menuChoices=true;
-        boolean menuChoices2=true;
+        boolean menuChoices = true;
+        boolean menuChoices2 = true;
         int choice;
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
 
 
-
-
-
-        while(menuChoices!=false) {//to list the main menu
+        while (menuChoices != false) {//to list the main menu
             choice = menu();
-            menuChoices2=true;
+            menuChoices2 = true;
             switch (choice) {
                 case 1://to display all destinations
                     int choice2;
-                    menuChoices=false;
+                    menuChoices = false;
                     System.out.println("*****Destinations*****");
                     for (int i = 0; i < listDestinations.size(); i++) {
-                        System.out.println((i+1)+". "+listDestinations.get(i));
+                        System.out.println((i + 1) + ". " + listDestinations.get(i));
                     }
+
                     System.out.println("\n");
 
-                    choice2=scanner.nextInt();
-
-                    while(menuChoices2!=false){//to list the second menu
+                    choice2 = scanner.nextInt();
+                    while(choice2>= listDestinations.size()||choice2<=0){
+                        System.out.println("\n\n\nError: Please Choose One!");
+                        for (int i = 0; i < listDestinations.size(); i++) {
+                            System.out.println((i + 1) + ". " + listDestinations.get(i));
+                        }
+                        choice2 = scanner.nextInt();
+                    }
+                    while (menuChoices2 != false) {//to list the second menu
                         choice2 = secondMenu();
-                        switch (choice2){
+                        switch (choice2) {
                             case 1:
-                                menuChoices=true;
-                                menuChoices2=false;
+                                menuChoices = true;
+                                menuChoices2 = false;
                                 break;
                             case 2:
 
@@ -93,7 +115,7 @@ public class MyClass {
                             case 3:
 
                                 for (int i = 0; i < arrayStops.size(); i++) {
-                                    System.out.println((i+1)+". "+arrayStops.get(i));
+                                    System.out.println((i + 1) + ". " + arrayStops.get(i));
                                 }
                                 break;
 
@@ -102,7 +124,7 @@ public class MyClass {
 
 
                             default:
-                                System.out.println("Please Choose one!");
+                                System.out.println("\n\n\nError: Please Choose One!");
 
                         }
                     }
@@ -122,7 +144,7 @@ public class MyClass {
                     //menuChoices=true;
                     return;
                 default:
-                    System.out.println("Please Choose one!");
+                    System.out.println("\n\n\nError: Please Choose One!");
 
             }
         }
