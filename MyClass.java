@@ -29,11 +29,6 @@ public class MyClass {
             //when user put other than integer
 
         }
-
-
-
-
-
             return selection;
 
     }
@@ -64,12 +59,14 @@ public class MyClass {
 
     public static void main(String args[]) {
         // variables
-        List<String> listDestinations = new ArrayList<String>();
-        List<ArrayList<String>> listStops = new ArrayList<ArrayList<String>>();
-        List<String> arrayStops = new ArrayList<String>();
-        boolean menuChoices = true;
-        boolean menuChoices2 = true;
-        int choice;
+        List<String> listDestinations = new ArrayList<String>();//the list array for the main destinations
+        ArrayList<List<String>> listStops = new ArrayList<List<String>>();//a list array of list arrays to store the stops
+        ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
+        boolean menuChoices = true;//this is to display the first menu when needed
+        boolean menuChoices2 = true;//this is to display the second menu when needed
+        int choice;//this is for the first menu choice
+        int choice2;//this is for the second menu choice
+        int storingStops;
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
 
@@ -79,7 +76,7 @@ public class MyClass {
             menuChoices2 = true;
             switch (choice) {
                 case 1://to display all destinations
-                    int choice2;
+
                     menuChoices = false;
                     System.out.println("*****Destinations*****");
                     for (int i = 0; i < listDestinations.size(); i++) {
@@ -88,13 +85,16 @@ public class MyClass {
 
                     System.out.println("\n");
 
-                    choice2 = scanner.nextInt();
-                    while(choice2>= listDestinations.size()||choice2<=0){
+                    choice2   = scanner.nextInt();
+                    storingStops = choice2;
+
+                    while(choice2> listDestinations.size()||choice2<=0){
                         System.out.println("\n\n\nError: Please Choose One!");
                         for (int i = 0; i < listDestinations.size(); i++) {
                             System.out.println((i + 1) + ". " + listDestinations.get(i));
                         }
                         choice2 = scanner.nextInt();
+
                     }
                     while (menuChoices2 != false) {//to list the second menu
                         choice2 = secondMenu();
@@ -107,15 +107,16 @@ public class MyClass {
 
                                 System.out.print("\n\nStop Name: \n");
                                 String name = scanner2.nextLine();
-
-                                arrayStops.add(name);
+                                //arrayStops.add(name);
+                                listStops.add(arrayStops);
+                                listStops.get(storingStops-1).add(name);
 
 
                                 break;
                             case 3:
 
-                                for (int i = 0; i < arrayStops.size(); i++) {
-                                    System.out.println((i + 1) + ". " + arrayStops.get(i));
+                                for (int i = 0; i < listStops.get(storingStops).size(); i++) {
+                                    System.out.println((i + 1) + ". " + listStops.get(storingStops-1).get(i));
                                 }
                                 break;
 
