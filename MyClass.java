@@ -42,7 +42,8 @@ public class MyClass {
         System.out.println("1. Main Menu");
         System.out.println("2. New Stop");
         System.out.println("3. Display Stops");
-        System.out.println("4. Exit");
+        System.out.println("4. Remove Stops");
+        System.out.println("5. Exit");
 
         try
         {
@@ -61,7 +62,7 @@ public class MyClass {
         // variables
         List<String> listDestinations = new ArrayList<String>();//the list array for the main destinations
         ArrayList<List<String>> listStops = new ArrayList<List<String>>();//a list array of list arrays to store the stops
-        ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
+
         boolean menuChoices = true;//this is to display the first menu when needed
         boolean menuChoices2 = true;//this is to display the second menu when needed
         int choice;//this is for the first menu choice
@@ -104,23 +105,33 @@ public class MyClass {
                                 menuChoices2 = false;
                                 break;
                             case 2:
-
+                                ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
                                 System.out.print("\n\nStop Name: \n");
                                 String name = scanner2.nextLine();
+                                //arrayStops.remove(0);
                                 //arrayStops.add(name);
                                 listStops.add(arrayStops);
                                 listStops.get(storingStops-1).add(name);
 
 
+
                                 break;
                             case 3:
-
-                                for (int i = 0; i < listStops.get(storingStops).size(); i++) {
+                                System.out.println("\n\nThe Stops for this Destination");
+                                System.out.println("******************************");
+                                for (int i = 0; i < listStops.get(storingStops-1).size(); i++) {
                                     System.out.println((i + 1) + ". " + listStops.get(storingStops-1).get(i));
                                 }
                                 break;
-
                             case 4:
+                                System.out.println("\n\n Which stop would you like to remove?");
+                                for (int i = 0; i < listStops.get(storingStops-1).size(); i++) {
+                                    System.out.println((i + 1) + ". " + listStops.get(storingStops-1).get(i));
+                                }
+                                int removeStop= scanner.nextInt();
+                                listStops.get(storingStops-1).remove(removeStop);
+                                break;
+                            case 5:
                                 return;
 
 
