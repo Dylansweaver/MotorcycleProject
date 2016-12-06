@@ -17,7 +17,8 @@ public class MyClass {
             System.out.println("Motorcycle Trip Planner");
             System.out.println("1. Destination");
             System.out.println("2. New Destination");
-            System.out.println("3. Exit");
+            System.out.println("3. Remove Destination");
+            System.out.println("4. Exit");
 
         try
         {
@@ -77,70 +78,77 @@ public class MyClass {
             menuChoices2 = true;
             switch (choice) {
                 case 1://to display all destinations
-
-                    menuChoices = false;
-                    System.out.println("*****Destinations*****");
-                    for (int i = 0; i < listDestinations.size(); i++) {
-                        System.out.println((i + 1) + ". " + listDestinations.get(i));
+                    if(listDestinations.isEmpty()){
+                        System.out.println("\n\nNo Destinations Yet!\n\n");
+                        break;
                     }
-
-                    System.out.println("\n");
-
-                    choice2   = scanner.nextInt();
-                    storingStops = choice2;
-
-                    while(choice2> listDestinations.size()||choice2<=0){
-                        System.out.println("\n\n\nError: Please Choose One!");
+                    else {
+                        menuChoices = false;
+                        System.out.println("*****Destinations*****");
                         for (int i = 0; i < listDestinations.size(); i++) {
                             System.out.println((i + 1) + ". " + listDestinations.get(i));
                         }
+
+                        System.out.println("\n");
+
                         choice2 = scanner.nextInt();
+                        storingStops = choice2;
 
-                    }
-                    while (menuChoices2 != false) {//to list the second menu
-                        choice2 = secondMenu();
-                        switch (choice2) {
-                            case 1:
-                                menuChoices = true;
-                                menuChoices2 = false;
-                                break;
-                            case 2:
-                                ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
-                                System.out.print("\n\nStop Name: \n");
-                                String name = scanner2.nextLine();
-                                //arrayStops.remove(0);
-                                //arrayStops.add(name);
-                                listStops.add(arrayStops);
-                                listStops.get(storingStops-1).add(name);
-
-
-
-                                break;
-                            case 3:
-                                System.out.println("\n\nThe Stops for this Destination");
-                                System.out.println("******************************");
-                                for (int i = 0; i < listStops.get(storingStops-1).size(); i++) {
-                                    System.out.println((i + 1) + ". " + listStops.get(storingStops-1).get(i));
-                                }
-                                break;
-                            case 4:
-                                System.out.println("\n\n Which stop would you like to remove?");
-                                for (int i = 0; i < listStops.get(storingStops-1).size(); i++) {
-                                    System.out.println((i + 1) + ". " + listStops.get(storingStops-1).get(i));
-                                }
-                                int removeStop= scanner.nextInt();
-                                listStops.get(storingStops-1).remove(removeStop);
-                                break;
-                            case 5:
-                                return;
-
-
-                            default:
-                                System.out.println("\n\n\nError: Please Choose One!");
+                        while (choice2 > listDestinations.size() || choice2 <= 0) {
+                            System.out.println("\n\n\nError: Please Choose One!");
+                            for (int i = 0; i < listDestinations.size(); i++) {
+                                System.out.println((i + 1) + ". " + listDestinations.get(i));
+                            }
+                            choice2 = scanner.nextInt();
 
                         }
-                    }
+                        while (menuChoices2 != false) {//to list the second menu
+                            choice2 = secondMenu();
+                            switch (choice2) {
+                                case 1:
+                                    menuChoices = true;
+                                    menuChoices2 = false;
+                                    break;
+                                case 2:
+                                    //ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
+                                    System.out.print("\n\nStop Name: \n");
+                                    String name = scanner2.nextLine();
 
+                                    listStops.get(storingStops - 1).add(name);
+
+
+                                    break;
+                                case 3:
+                                    if(listStops.get(storingStops - 1).isEmpty()){
+                                        System.out.println("\n\nThere are no Stops Yet!\n\n");
+                                        break;
+                                    }
+                                    else {
+                                        System.out.println("\n\nThe Stops for this Destination");
+                                        System.out.println("******************************");
+                                        for (int i = 0; i < listStops.get(storingStops - 1).size(); i++) {
+                                            System.out.println((i + 1) + ". " + listStops.get(storingStops - 1).get(i));
+                                        }
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("\n\n Which stop would you like to remove?");
+                                    for (int i = 0; i < listStops.get(storingStops - 1).size(); i++) {
+                                        System.out.println((i + 1) + ". " + listStops.get(storingStops - 1).get(i));
+                                    }
+                                    int removeStop = scanner.nextInt();
+                                    listStops.get(storingStops - 1).remove(removeStop - 1);
+                                    break;
+                                case 5:
+                                    return;
+
+
+                                default:
+                                    System.out.println("\n\n\nError: Please Choose One!");
+
+                            }
+                        }
+                    }
 
                     break;
                 case 2:
@@ -148,11 +156,22 @@ public class MyClass {
                     String destination = scanner.nextLine();
                     listDestinations.add(destination);
                     System.out.println("\n");
-
+                    ArrayList<String> arrayStops = new ArrayList<String>();
+                    listStops.add(arrayStops);
                     break;
 
-
                 case 3:
+                    System.out.println("\n\n Which Destination would you like to remove?");
+                    System.out.println("*****Destinations*****");
+                    for (int i = 0; i < listDestinations.size(); i++) {
+                        System.out.println((i + 1) + ". " + listDestinations.get(i));
+                    }
+                    int removeDestination= scanner.nextInt();
+                    listDestinations.remove(removeDestination-1);
+                    listStops.remove(removeDestination-1);
+                    System.out.println("Destination Removed\n\n");
+                    break;
+                case 4:
                     //menuChoices=true;
                     return;
                 default:
