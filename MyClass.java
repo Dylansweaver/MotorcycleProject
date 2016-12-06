@@ -135,14 +135,20 @@ public class MyClass {
                                     }
                                     break;
                                 case 4://to remove stops from the destination
-                                    System.out.println("\n\n Which stop would you like to remove?");
-                                    for (int i = 0; i < listStops.get(storingStops - 1).size(); i++) {//list stops
-                                        System.out.println((i + 1) + ". " + listStops.get(storingStops - 1).get(i));
+                                    if (listStops.get(storingStops - 1).isEmpty()) {//checks for stops to prevent opening nothing
+                                        System.out.println("\n\nThere are no Stops Yet!\n\n");
+                                        break;
+                                    } else {
+                                        System.out.println("\n\n Which stop would you like to remove?");
+                                        for (int i = 0; i < listStops.get(storingStops - 1).size(); i++) {//list stops
+                                            System.out.println((i + 1) + ". " + listStops.get(storingStops - 1).get(i));
+                                        }
+                                        int removeStop = scanner.nextInt();//creates value to use to choose stop to remove
+                                        scanner.nextLine();//cleans up any possible left over scanner space
+                                        listStops.get(storingStops - 1).remove(removeStop - 1);//removes stop
+                                        System.out.println("Stop removed");
+                                        break;
                                     }
-                                    int removeStop = scanner.nextInt();//creates value to use to choose stop to remove
-                                    scanner.nextLine();//cleans up any possible left over scanner space
-                                    listStops.get(storingStops - 1).remove(removeStop - 1);//removes stop
-                                    break;
                                 case 5://ends program
                                     return;
 
