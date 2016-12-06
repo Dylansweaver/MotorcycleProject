@@ -13,12 +13,12 @@ public class MyClass {
 
         Scanner input = new Scanner(System.in);
 
-            System.out.println(" ");
-            System.out.println("Motorcycle Trip Planner");
-            System.out.println("1. Destination");//option to view destinations
-            System.out.println("2. New Destination");//option for new destination
-            System.out.println("3. Remove Destination");//option to remove a destination and all its stops
-            System.out.println("4. Exit");//exit program
+        System.out.println(" ");
+        System.out.println("Motorcycle Trip Planner");
+        System.out.println("1. Destination");//option to view destinations
+        System.out.println("2. New Destination");//option for new destination
+        System.out.println("3. Remove Destination");//option to remove a destination and all its stops
+        System.out.println("4. Exit");//exit program
 
         try//this is check validation to makes sure only option offered can be chosen
         {
@@ -31,7 +31,7 @@ public class MyClass {
             //when user put other than integer
 
         }
-            return selection;//this returns the selection
+        return selection;//this returns the selection
 
     }
 
@@ -80,11 +80,10 @@ public class MyClass {
             menuChoices2 = true;
             switch (choice) {
                 case 1://to display all destinations
-                    if(listDestinations.isEmpty()){//checks to see if there are destiantions so it wont open the list and break the program
+                    if (listDestinations.isEmpty()) {//checks to see if there are destiantions so it wont open the list and break the program
                         System.out.println("\n\nNo Destinations Yet!\n\n");
                         break;
-                    }
-                    else {
+                    } else {
                         menuChoices = false;
                         System.out.println("*****Destinations*****");//displays the destinations
                         for (int i = 0; i < listDestinations.size(); i++) {//uses the destinations list to display the destinations
@@ -124,11 +123,10 @@ public class MyClass {
 
                                     break;
                                 case 3://displays stops
-                                    if(listStops.get(storingStops - 1).isEmpty()){//checks for stops to prevent opening nothing
+                                    if (listStops.get(storingStops - 1).isEmpty()) {//checks for stops to prevent opening nothing
                                         System.out.println("\n\nThere are no Stops Yet!\n\n");
                                         break;
-                                    }
-                                    else {
+                                    } else {
                                         System.out.println("\n\nThe Stops for this Destination");
                                         System.out.println("******************************");
                                         for (int i = 0; i < listStops.get(storingStops - 1).size(); i++) {//list stops
@@ -168,24 +166,30 @@ public class MyClass {
                     break;
 
                 case 3://deletes a destination
-                    System.out.println("\n\n Which Destination would you like to remove?");
-                    System.out.println("*****Destinations*****");
-                    for (int i = 0; i < listDestinations.size(); i++) {//displays destiantions
-                        System.out.println((i + 1) + ". " + listDestinations.get(i));
+                    if (listDestinations.isEmpty()) {//checks to see if there are destiantions so it wont open the list and break the program
+                        System.out.println("\n\nNo Destinations Yet!\n\n");
+                        break;
+                    } else {
+                        System.out.println("\n\n Which Destination would you like to remove?");
+                        System.out.println("*****Destinations*****");
+                        for (int i = 0; i < listDestinations.size(); i++) {//displays destiantions
+                            System.out.println((i + 1) + ". " + listDestinations.get(i));
+                        }
+                        int removeDestination = scanner.nextInt();//creates value to use to remove destination
+                        scanner.nextLine();//cleans up any possible left over scanner space
+                        listDestinations.remove(removeDestination - 1);//removes destination
+                        listStops.remove(removeDestination - 1);//removes all stops associated with the destination
+                        System.out.println("Destination Removed\n\n");
+                        break;
                     }
-                    int removeDestination= scanner.nextInt();//creates value to use to remove destination
-                    scanner.nextLine();//cleans up any possible left over scanner space
-                    listDestinations.remove(removeDestination-1);//removes destination
-                    listStops.remove(removeDestination-1);//removes all stops associated with the destination
-                    System.out.println("Destination Removed\n\n");
-                    break;
-                case 4://ends program
-                    //menuChoices=true;
-                    return;
-                default:
-                    System.out.println("\n\n\nError: Please Choose One!");
+                        case 4://ends program
+                            //menuChoices=true;
+                            return;
+                        default:
+                            System.out.println("\n\n\nError: Please Choose One!");
 
-            }
+                    }
+
         }
     }
 }
