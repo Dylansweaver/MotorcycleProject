@@ -117,7 +117,7 @@ public class MyClass {
                                     //ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
                                     System.out.print("\n\nStop Name: \n");
                                     String name = scanner2.nextLine();
-                                    scanner2.nextLine();//cleans up any possible left over scanner space
+                                    //scanner2.nextLine();//cleans up any possible left over scanner space
                                     listStops.get(storingStops - 1).add(name);
 
 
@@ -164,7 +164,7 @@ public class MyClass {
                 case 2://creates new destination
                     System.out.println("\n\nDestination Name: ");
                     String destination = scanner.nextLine();
-                    scanner.nextLine();//cleans up any possible left over scanner space
+                    //scanner.nextLine();//cleans up any possible left over scanner space
                     listDestinations.add(destination);
                     System.out.println("\n");
                     ArrayList<String> arrayStops = new ArrayList<String>();
