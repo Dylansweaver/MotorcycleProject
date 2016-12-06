@@ -23,6 +23,7 @@ public class MyClass {
         try//this is check validation to makes sure only option offered can be chosen
         {
             selection = input.nextInt();
+            input.nextLine();
         }
         catch(InputMismatchException exception)
         {
@@ -49,6 +50,7 @@ public class MyClass {
         try//another input validation
         {
             selection = input.nextInt();
+            input.nextLine();
         }
         catch(InputMismatchException exception)
         {
@@ -92,6 +94,7 @@ public class MyClass {
                         System.out.println("\n");
 
                         choice2 = scanner.nextInt();//takes the destination choice
+                        scanner.nextLine();//cleans up any possible left over scanner space
                         storingStops = choice2;//stores the destination choice for use in storting stops
 
                         while (choice2 > listDestinations.size() || choice2 <= 0) {//input validation for destinations
@@ -100,6 +103,7 @@ public class MyClass {
                                 System.out.println((i + 1) + ". " + listDestinations.get(i));
                             }
                             choice2 = scanner.nextInt();
+                            scanner.nextLine();//cleans up any possible left over scanner space
                             storingStops = choice2;
 
                         }
@@ -114,7 +118,7 @@ public class MyClass {
                                     //ArrayList<String> arrayStops = new ArrayList<String>();//the list array to store the stops
                                     System.out.print("\n\nStop Name: \n");
                                     String name = scanner2.nextLine();
-
+                                    scanner2.nextLine();//cleans up any possible left over scanner space
                                     listStops.get(storingStops - 1).add(name);
 
 
@@ -138,6 +142,7 @@ public class MyClass {
                                         System.out.println((i + 1) + ". " + listStops.get(storingStops - 1).get(i));
                                     }
                                     int removeStop = scanner.nextInt();//creates value to use to choose stop to remove
+                                    scanner.nextLine();//cleans up any possible left over scanner space
                                     listStops.get(storingStops - 1).remove(removeStop - 1);//removes stop
                                     break;
                                 case 5://ends program
@@ -155,6 +160,7 @@ public class MyClass {
                 case 2://creates new destination
                     System.out.println("\n\nDestination Name: ");
                     String destination = scanner.nextLine();
+                    scanner.nextLine();//cleans up any possible left over scanner space
                     listDestinations.add(destination);
                     System.out.println("\n");
                     ArrayList<String> arrayStops = new ArrayList<String>();
@@ -168,6 +174,7 @@ public class MyClass {
                         System.out.println((i + 1) + ". " + listDestinations.get(i));
                     }
                     int removeDestination= scanner.nextInt();//creates value to use to remove destination
+                    scanner.nextLine();//cleans up any possible left over scanner space
                     listDestinations.remove(removeDestination-1);//removes destination
                     listStops.remove(removeDestination-1);//removes all stops associated with the destination
                     System.out.println("Destination Removed\n\n");
